@@ -5,6 +5,8 @@
  */
 package edu.javacources.student.service;
 
+import edu.javacources.student.view.StudentRequest;
+import edu.javacources.student.view.StudentResponce;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,10 +20,7 @@ import org.springframework.stereotype.Service;
 public class StudentService {
    private static final Logger lg = LoggerFactory.getLogger(StudentService.class);
    
-   public void simpleCall(){
-       lg.info("CALLED!!!");
-   }
-   public StudentService(){
-       
-   }
+   public StudentResponce getStudentInfo(StudentRequest request){
+        
+    }
 }
