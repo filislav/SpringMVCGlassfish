@@ -5,10 +5,18 @@
  */
 package edu.javacources.student.service;
 
+import edu.javacources.student.dao.StudentRepository;
+import edu.javacources.student.domain.Student;
+import edu.javacources.student.domain.StudentDocument;
 import edu.javacources.student.view.StudentRequest;
 import edu.javacources.student.view.StudentResponce;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +28,31 @@ import org.springframework.stereotype.Service;
 public class StudentService {
    private static final Logger lg = LoggerFactory.getLogger(StudentService.class);
    
-   public StudentResponce getStudentInfo(StudentRequest request){
-        
+   @Autowired
+   private StudentRepository studentRepository;
+   
+   @Transactional
+   public List<StudentResponce> getStudentInfo(StudentRequest request){
+        List<Student> student = studentRepository.findStudent(request.getLastName(),request.getFirstName(),
+                request.getMiddleName(),request.getDateOfBirth(), 
+                request.getPassportSeries(),request.getPassportNumber(), request.getPassportDate());
+        if(student.isEmpty()){
+            return Collections.EMPTY_LIST;
+        }
+        List<StudentDocument> docs = student.get(0).getDocuments();
+        List<StudentResponce> result = docs.stream().map(d->getResponce(d)).collect(Collectors.toList());
+        return result;
     }
+   
+   private StudentResponce getResponce(StudentDocument sd){
+       StudentResponce sr = new StudentResponce();
+       sr.setDocumentNumber(sd.getDocumentNumber());
+       sr.setDocumentDate(sd.getDocumentDate());
+       sr.setExpiredDate(sd.getExpiredDate());
+       sr.setFacultyName(sd.getFaculty().getFacultyName());
+       sr.setUnivercityName(sd.getFaculty().getUniversity().getUnivercityName());
+       sr.setStudentForm(sd.getStudentForm().toString());
+       
+       return sr;
+   }
 }

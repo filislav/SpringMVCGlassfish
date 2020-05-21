@@ -32,7 +32,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>edu.javacourse.student.domain</value>
+                <value>edu.javacources.student.domain</value>
             </list>
         </property>
         <property name="jpaVendorAdapter">
