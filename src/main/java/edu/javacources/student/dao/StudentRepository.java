@@ -22,13 +22,13 @@ import org.springframework.stereotype.Component;
 public interface StudentRepository extends JpaRepository<Student,Long> {
     @Query("SELECT st from Student st WHERE st.lastName=:lastName AND"
             + " st.firstName=:firstName AND st.middleName =:middleName AND "
-            + "st.dateOfBirth =:dateOfBirth AND st.passportSeria =:passportSeria"
+            + "st.dateOfBirth =:dateOfBirth AND st.passportSeries =:passportSeries"
             + " AND st.passportNumber=:passportNumber AND st.passportDate = :passportDate")
     List<Student> findStudent(@Param("lastName")String lastName,
                               @Param("firstName")String firstName,
                               @Param("middleName")String middleName,
                               @Param("dateOfBirth")LocalDate dateOfBirth,
-                              @Param("passportSeria")String passportSeria,
+                              @Param("passportSeries")String passportSeries,
                               @Param("passportNumber")String passportNumber,
                               @Param("passportDate")LocalDate passportDate);
     

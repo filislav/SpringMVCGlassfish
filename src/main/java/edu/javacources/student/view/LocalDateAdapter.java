@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  */
 public class LocalDateAdapter extends XmlAdapter<String,LocalDate>{
 
-    private static final String PATTERN = "yy:mm:dd";
+    private static final String PATTERN = "dd.MM.yyyy";
     @Override
     public LocalDate unmarshal(String s) throws Exception {
         return LocalDate.parse(s, DateTimeFormatter.ofPattern(PATTERN));

@@ -39,10 +39,10 @@ public class StudentServiceTest {
         req.setLastName("fil");
         req.setFirstName("slava");
         req.setMiddleName("vic");
-        req.setDateOfBirth(LocalDate.of(2000,4,12));
+        req.setDateOfBirth(LocalDate.of(2000,04,12));
         req.setPassportSeries("1111");
         req.setPassportNumber("222222");
-        req.setPassportDate(LocalDate.of(2016,5,9));
+        req.setPassportDate(LocalDate.of(2016,05,9));
         
         List<StudentResponce> info = studentController.getStudentInfo(req);
         
