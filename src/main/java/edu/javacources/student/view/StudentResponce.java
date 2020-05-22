@@ -7,6 +7,7 @@ package edu.javacources.student.view;
 
 import edu.javacources.student.domain.StudentForm;
 import java.time.LocalDate;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -14,7 +15,9 @@ import java.time.LocalDate;
  */
 public class StudentResponce {
     private String documentNumber;
+    @XmlJavaTypeAdapter(value=LocalDateAdapter.class)
     private LocalDate documentDate;
+    @XmlJavaTypeAdapter(value=LocalDateAdapter.class)
     private LocalDate expiredDate;
     private String facultyName;
     private String univercityName;
